@@ -21,6 +21,8 @@
   height: 28px;
   background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect y="4" width="24" height="2"/><rect y="11" width="24" height="2"/><rect y="18" width="24" height="2"/></svg>') no-repeat center center;
   background-size: 24px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
 /* Dropdown menu styles */
@@ -37,6 +39,7 @@
   z-index: 1100;
   padding: 8px 0;
   font-size: 1rem;
+  
 }
 
 #menu-list.show {
@@ -52,4 +55,22 @@
 
 #menu-list li:hover {
   background: #e3f2fd;
+}
+
+.big-blue-btn {
+  display: block;
+  margin: 90px auto 0 auto; /* space under banner, center horizontally */
+  padding: 24px 48px;
+  font-size: 1.5rem;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s;
+}
+
+.big-blue-btn:hover {
+  background: orange;
 }

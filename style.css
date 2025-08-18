@@ -14,11 +14,42 @@
   z-index: 1000;
 }
 
-#menu::after {
-  content: "";
+#menu .menu-icon {
   display: inline-block;
+  margin-left: auto;
   width: 28px;
   height: 28px;
   background: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect y="4" width="24" height="2"/><rect y="11" width="24" height="2"/><rect y="18" width="24" height="2"/></svg>') no-repeat center center;
   background-size: 24px 24px;
+}
+
+/* Dropdown menu styles */
+#menu-list {
+  display: none;
+  position: absolute;
+  top: 56px;
+  right: 24px;
+  background: #fff;
+  color: #1976d2;
+  min-width: 160px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  z-index: 1100;
+  padding: 8px 0;
+  font-size: 1rem;
+}
+
+#menu-list.show {
+  display: block;
+}
+
+#menu-list li {
+  list-style: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#menu-list li:hover {
+  background: #e3f2fd;
 }

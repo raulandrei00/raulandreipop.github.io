@@ -133,3 +133,42 @@ main {
   box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
   padding: 32px 40px 24px 40px;
 }
+
+#intro-content {
+  max-width: 700px;
+  margin: 48px auto 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.10);
+  padding: 32px 40px 24px 40px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+#intro-content ul {
+  margin: 18px 0 0 24px;
+  padding-left: 18px;
+}
+
+#intro-content li {
+  margin-bottom: 12px;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+#intro-content li::marker {
+  color: #1976d2;
+}
+
+#intro-content a {
+  color: #1976d2;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+#intro-content a:hover {
+  color: orange;
+  text-decoration: underline;
+}

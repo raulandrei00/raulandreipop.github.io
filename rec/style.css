@@ -1,0 +1,68 @@
+main {
+  max-width: 700px;
+  margin: 80px auto 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+  padding: 32px 40px 24px 40px;
+}
+
+main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1976d2;
+  margin-bottom: 18px;
+}
+
+main p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #222;
+}
+
+main ul {
+  margin: 18px 0 0 24px;
+  padding-left: 18px;
+}
+
+main li {
+  margin-bottom: 12px;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+main li::marker {
+  color: #1976d2;
+}
+
+main a {
+  color: #1976d2;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+main a:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}

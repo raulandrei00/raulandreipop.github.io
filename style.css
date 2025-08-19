@@ -89,17 +89,40 @@
 
 /* THIS IS FOR /mate/admitere.html which uses the same stylesheet */
 
+/* @media (max-width: 600px) {
+  #menu {
+    flex-wrap: wrap;
+    padding: 12px 8px;
+  }
+  #menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #menu .menu-title {
+    flex: 1 1 100%;
+    margin: 8px 0 0 0;
+    font-size: 1.1rem;
+    text-align: left;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+  }
+} */
+
 #menu .menu-title {
-  flex: 1;
+  flex: 1 1 0;
   margin: 0 16px;
   font-size: 1.3rem;
   font-weight: 600;
   color: #fff;
   text-align: left;
   letter-spacing: 0.5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;      /* Allow text to wrap */
+  overflow: visible;        /* Show all text */
+  text-overflow: unset;     /* No ellipsis */
+  word-break: break-word;   /* Break long words if needed */
+  min-width: 0;             /* Prevent flex overflow issues */
+  line-height: 1.3;
 }
 
 main {

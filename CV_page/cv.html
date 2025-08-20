@@ -6,11 +6,25 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png?v=1.0">
   <title>Document PDF</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header>
-    Vizualizare PDF
-  </header>
+  <div id="menu">
+      <a href="../index.html" class="home-button" title="Acasă" aria-label="Acasă">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+          </svg>
+      </a>
+      <h2 class="menu-title">CV</h2>
+      <span class="menu-icon"></span>
+      <ul id="menu-list">
+          <li><a href="../CV_page/cv.html">My CV</a></li>
+          <li><a href="../rec/page.html">Recommandations</a></li>
+          <li><a href="../mate/admitere.html">Tutoring</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+      </ul>
+  </div>
+
   <div class="container">
     <iframe src="../assets/pdfs/CV_summer_2025.pdf"></iframe>
   </div>

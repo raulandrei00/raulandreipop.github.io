@@ -73,43 +73,53 @@ group_sizes = split_groups(teams)
 groups = []
 idx = 0
 
-for i, size in enumerate(group_sizes):
+for size in group_sizes:
     group = teams[idx:idx+size]
     groups.append(group)
     idx += size
-    # --- EXPORT JSON ---
-    groups_data = []
-    for i, group in enumerate(groups, start=1):
-        group_dict = {
-            "group_id": i,
-            "teams": [
-                {"team_name": team, "member1": m1, "member2": m2}
-                for team, m1, m2 in group
-            ]
-        }
-        groups_data.append(group_dict)
 
-    with open("groups.json", "w", encoding="utf-8") as f:
-        json.dump(groups_data, f, indent=4)
+# --- EXPORT JSON (optional, can remove later) ---
+groups_data = []
+for i, group in enumerate(groups, start=1):
+    group_dict = {
+        "group_id": i,
+        "teams": [
+            {"team_name": team, "member1": m1, "member2": m2}
+            for team, m1, m2 in group
+        ]
+    }
+    groups_data.append(group_dict)
 
-    print("groups.json generated")
+with open("groups.json", "w", encoding="utf-8") as f:
+    json.dump(groups_data, f, indent=4)
 
-    SCORE_SHEET_ID = "1pyNcvwS60H6ixJGHHkiwTbyfR4Fy1jONKxUmaZjfeZ0"
+print("groups.json generated")
 
-    score_sheet = client.open_by_key(SCORE_SHEET_ID).worksheet("Sheet1")  # or correct tab
+# --- PREPARE DATA FOR GOOGLE SHEET ---
+rows = []
 
-    score_sheet.clear()
+for group_id, group in enumerate(groups, start=1):
+    for team, m1, m2 in group:
+        rows.append([group_id, team, m1, m2, 0])  # score starts at 0
 
-    score_sheet.append_row(["name", "score"])
+# --- UPLOAD TO GOOGLE SHEET ---
+SCORE_SHEET_ID = "1pyNcvwS60H6ixJGHHkiwTbyfR4Fy1jONKxUmaZjfeZ0"
+score_sheet = client.open_by_key(SCORE_SHEET_ID).worksheet("Sheet1")
 
-    for team, m1, m2 in teams:
-        score_sheet.append_row([team, 0])
+score_sheet.clear()
 
-    # --- EXPORT CSV ---
-    with open("absolute_scores.csv", "w", newline='', encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(["name", "score"])
-        for team, m1, m2 in teams:
-            writer.writerow([team, 0])
+# header
+score_sheet.append_row(["group", "team", "member1", "member2", "score"])
 
-    print("absolute_scores.csv generated")
+# bulk upload (FASTER than loop)
+score_sheet.append_rows(rows)
+
+print("Google Sheet updated")
+
+# --- OPTIONAL: EXPORT LOCAL CSV ---
+with open("absolute_scores.csv", "w", newline='', encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow(["group", "team", "member1", "member2", "score"])
+    writer.writerows(rows)
+
+print("absolute_scores.csv generated")

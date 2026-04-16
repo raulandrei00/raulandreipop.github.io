@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Phase Standings</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        h2 { color: #333; }
+    </style>
+    <link href="style_standings.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Group Phase Standings</h1>
+    <div id="standings"></div>
+
+<script>
+async function loadStandings() {
+    try {
+        const GOOGLE_SHEET_CSV =
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vS_8-L19e2Zcj8rumZtI0p2FDXHT5MbnzELmMxA4SJaAtBkFV-LhN9hbOvJG72ezJgf8sdm-V98Rbp-/pub?output=csv";
+
+        const groupsResponse = await fetch('./groups.json');
+        const groups = await groupsResponse.json();
+
+        // fetch live CSV (with cache busting)
+        const SHEET_ID = "1pyNcvwS60H6ixJGHHkiwTbyfR4Fy1jONKxUmaZjfeZ0";
+
+        const url =
+            `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Sheet1&cache=${Date.now()}`;
+
+        const scoresResponse = await fetch(url, { cache: "no-store" });
+
+        
+        if (!scoresResponse.ok) {
+            throw new Error("Failed to load Google Sheet CSV");
+        }
+        
+        const csvText = await scoresResponse.text();
+        console.log("CSV RAW:");
+        console.log(csvText);
+
+        const clean = (s) =>
+            (s || "")
+                .replaceAll('"', "")
+                .trim()
+                .toLowerCase();
+
+        // --- parse CSV ---
+        const scores = Object.fromEntries(
+            csvText
+                .trim()
+                .split('\n')
+                .slice(1)
+                .map(line => {
+                    const [name, score] = line.split(',');
+                    return [clean(name), parseFloat(clean(score)) || 0];
+                })
+        );
+
+        const container = document.getElementById('standings');
+        container.innerHTML = '';
+
+        groups.forEach(group => {
+            const groupDiv = document.createElement('div');
+            groupDiv.innerHTML = `<h2>Group ${group.group_id}</h2>`;
+
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Member 1</th>
+                        <th>Member 2</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
+
+            const tbody = table.querySelector('tbody');
+
+            // sort by score (descending)
+            const sortedTeams = [...group.teams].sort((a, b) => {
+                const aScore = scores[a.team_name.trim().toLowerCase()] ?? 0;
+                const bScore = scores[b.team_name.trim().toLowerCase()] ?? 0;
+                return bScore - aScore;
+            });
+
+            sortedTeams.forEach(team => {
+                const key = team.team_name.trim().toLowerCase();
+                const score = scores[key] ?? 0;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${team.team_name}</td>
+                        <td>${team.member1}</td>
+                        <td>${team.member2}</td>
+                        <td>${score}</td>
+                    </tr>
+                `;
+            });
+
+            groupDiv.appendChild(table);
+            container.appendChild(groupDiv);
+        });
+
+    } catch (err) {
+        console.error("Error loading standings:", err);
+        document.getElementById('standings').innerHTML =
+            "<p>Error loading standings.</p>";
+    }
+}
+
+loadStandings();
+</script>
+
+</body>
+</html>

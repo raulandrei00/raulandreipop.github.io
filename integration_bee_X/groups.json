@@ -1,0 +1,52 @@
+[
+    {
+        "group_id": 1,
+        "teams": [
+            {
+                "team_name": "dsg",
+                "member1": "shlom",
+                "member2": "ma sa lu octav"
+            },
+            {
+                "team_name": "dsghbwnrg",
+                "member1": "caca",
+                "member2": "ruxandra"
+            },
+            {
+                "team_name": "t2",
+                "member1": "arde regele",
+                "member2": "raul boss"
+            },
+            {
+                "team_name": "sasfg",
+                "member1": "ovidiu",
+                "member2": "gg"
+            }
+        ]
+    },
+    {
+        "group_id": 2,
+        "teams": [
+            {
+                "team_name": "t1",
+                "member1": "plm",
+                "member2": "pizda"
+            },
+            {
+                "team_name": "sdhgfjdt",
+                "member1": "ruxic",
+                "member2": "alt sef"
+            },
+            {
+                "team_name": "fdn",
+                "member1": "fdnndsfg",
+                "member2": "dghb"
+            },
+            {
+                "team_name": "rsbntstjhsrjhn",
+                "member1": "vladutz",
+                "member2": "ioana"
+            }
+        ]
+    }
+]

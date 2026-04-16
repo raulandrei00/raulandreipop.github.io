@@ -2,6 +2,9 @@ import random
 import csv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import json
+import io
+import requests
 
 # --- AUTH (same as your setup) ---
 scope = [
@@ -10,7 +13,7 @@ scope = [
 ]
 
 creds = ServiceAccountCredentials.from_json_keyfile_name(
-    "path/to/your/service-account.json", scope
+    "C:/Users/raula/Downloads/vocal-unfolding-472611-k1-aa03d0f758cf.json", scope
 )
 client = gspread.authorize(creds)
 
@@ -74,18 +77,39 @@ for i, size in enumerate(group_sizes):
     group = teams[idx:idx+size]
     groups.append(group)
     idx += size
-
-# --- EXPORT CSV ---
-with open("groups.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.writer(f)
-
+    # --- EXPORT JSON ---
+    groups_data = []
     for i, group in enumerate(groups, start=1):
-        writer.writerow([f"Group {i}"])
-        writer.writerow(["Team Name", "Member 1", "Member 2"])
+        group_dict = {
+            "group_id": i,
+            "teams": [
+                {"team_name": team, "member1": m1, "member2": m2}
+                for team, m1, m2 in group
+            ]
+        }
+        groups_data.append(group_dict)
 
-        for team, m1, m2 in group:
-            writer.writerow([team, m1, m2])
+    with open("groups.json", "w", encoding="utf-8") as f:
+        json.dump(groups_data, f, indent=4)
 
-        writer.writerow([])  # blank line between groups
+    print("groups.json generated")
 
-print("groups.csv generated")
+    SCORE_SHEET_ID = "1pyNcvwS60H6ixJGHHkiwTbyfR4Fy1jONKxUmaZjfeZ0"
+
+    score_sheet = client.open_by_key(SCORE_SHEET_ID).worksheet("Sheet1")  # or correct tab
+
+    score_sheet.clear()
+
+    score_sheet.append_row(["name", "score"])
+
+    for team, m1, m2 in teams:
+        score_sheet.append_row([team, 0])
+
+    # --- EXPORT CSV ---
+    with open("absolute_scores.csv", "w", newline='', encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(["name", "score"])
+        for team, m1, m2 in teams:
+            writer.writerow([team, 0])
+
+    print("absolute_scores.csv generated")

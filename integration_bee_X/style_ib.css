@@ -1,0 +1,49 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #001F3F; /* Dark blue background */
+    color: #FFFFFF; /* White text */
+}
+
+/* Links styling */
+a {
+    color: #0074D9; /* Lighter blue for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #7FDBFF; /* Even lighter blue on hover */
+    text-decoration: underline;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 20px;
+    color: #FFFFFF;
+}
+
+/* Layout styling */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Links container */
+a {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Add some spacing */
+a:first-of-type {
+    margin-top: 20px;
+}

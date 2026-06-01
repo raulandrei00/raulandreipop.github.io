@@ -3,19 +3,79 @@
         "group_id": 1,
         "teams": [
             {
-                "team_name": "er",
-                "member1": "u",
-                "member2": "i"
+                "team_name": "Belescu2",
+                "member1": "Luca Ilie",
+                "member2": "\u0218tefan Niculescu"
             },
             {
-                "team_name": "erys",
-                "member1": "hd",
-                "member2": ""
+                "team_name": "The Grand Integwators",
+                "member1": "Daniel Jenkin",
+                "member2": "Theo Chips"
             },
             {
-                "team_name": "r",
-                "member1": "t",
-                "member2": "y"
+                "team_name": "Something",
+                "member1": "Kexin HUA",
+                "member2": "Aditya Cheong Dave"
+            }
+        ]
+    },
+    {
+        "group_id": 2,
+        "teams": [
+            {
+                "team_name": "Casablanca\u2019s integrators",
+                "member1": "Kamil Bennani",
+                "member2": "Gabriel Mourad"
+            },
+            {
+                "team_name": "Belescu",
+                "member1": "Elisa Ipate",
+                "member2": "Mihnea Iordan"
+            },
+            {
+                "team_name": "Ion Integral",
+                "member1": "Ardelean Alexandru",
+                "member2": "Rare\u0219 Spinescu"
+            }
+        ]
+    },
+    {
+        "group_id": 3,
+        "teams": [
+            {
+                "team_name": "Cap calculator",
+                "member1": "Ruxandra Tutunaru",
+                "member2": "Ovidiu Lazar"
+            },
+            {
+                "team_name": "Capitanul Problemei",
+                "member1": "Edward Torac",
+                "member2": "Gabriela Pirvulescu"
+            },
+            {
+                "team_name": "Non-decreasing sequence",
+                "member1": "Alexandru Benescu",
+                "member2": "Darius Chi\u021bu"
+            }
+        ]
+    },
+    {
+        "group_id": 4,
+        "teams": [
+            {
+                "team_name": "integral of team name plus c",
+                "member1": "Mehdi Nikopour Deilami",
+                "member2": "Wiktoria Bazan"
+            },
+            {
+                "team_name": "Bee",
+                "member1": "Leo Erdos",
+                "member2": "Jingyan Zhang"
+            },
+            {
+                "team_name": "Censored Team Name",
+                "member1": "Luca Metehau",
+                "member2": "Tim Ziaran"
             }
         ]
     }
